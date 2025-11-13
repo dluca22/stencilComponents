@@ -20,6 +20,11 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface TemplateCard {
+        "first": string;
+        "last": string;
+        "middle": string;
+    }
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -28,8 +33,15 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLTemplateCardElement extends Components.TemplateCard, HTMLStencilElement {
+    }
+    var HTMLTemplateCardElement: {
+        prototype: HTMLTemplateCardElement;
+        new (): HTMLTemplateCardElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "template-card": HTMLTemplateCardElement;
     }
 }
 declare namespace LocalJSX {
@@ -47,8 +59,14 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface TemplateCard {
+        "first"?: string;
+        "last"?: string;
+        "middle"?: string;
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "template-card": TemplateCard;
     }
 }
 export { LocalJSX as JSX };
@@ -56,6 +74,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "template-card": LocalJSX.TemplateCard & JSXBase.HTMLAttributes<HTMLTemplateCardElement>;
         }
     }
 }
