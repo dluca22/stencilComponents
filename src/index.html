@@ -7,9 +7,58 @@
 
     <script type="module" src="/build/example-stencil.esm.js"></script>
     <script nomodule src="/build/example-stencil.js"></script>
+    <style>
+      section {
+        /* margin-top: 3rem;
+        margin-bottom: 3rem; */
+        border-bottom:  1px dashed rgb(37, 37, 37);
+        padding: 2rem;
+      }
+      *{
+        color: blue;
+      }
+    </style>
   </head>
   <body>
-    <!-- <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component> -->
-    <template-card first="Walker" middle="texas" last="ranger"></template-card>
+    <section>
+
+      <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component>
+      
+    </section>
+    <section>
+      <custom-hello first="Walker" middle="texas" last="ranger"></custom-hello>
+    </section>
+
+    <section>
+      <div style="display: flex; gap: 5px; flex-wrap: wrap;">
+        <template-card
+        first="walker"
+        last="Texas Ranger"
+        job="Ranger/semi-god"
+        description="I usually smoke cigars and smash dickheads....but i'm all out of cigars"
+        age="49"
+        accomplishments="99"
+        ></template-card>
+      
+        <div>
+          <template-card
+          first="rookie "
+          last="patookie"
+          job="Web dev"
+          description="I crash them code like it's going out of style"
+          age="33"
+          accomplishments="0"
+          ></template-card>
+          
+          <button-event> +1 accomplishment!</button-event>
+        </div>
+      </div>
+    </section>
+    
+    <section>
+    </section>
+    
+
+
   </body>
 </html>

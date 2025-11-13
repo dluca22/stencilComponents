@@ -6,6 +6,13 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface ButtonEvent {
+    }
+    interface CustomHello {
+        "first": string;
+        "last": string;
+        "middle": string;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -21,12 +28,30 @@ export namespace Components {
         "middle": string;
     }
     interface TemplateCard {
+        /**
+          * @default 0
+         */
+        "accomplishments": number;
+        "age": number;
+        "description": string;
         "first": string;
+        "job": string;
         "last": string;
-        "middle": string;
     }
 }
 declare global {
+    interface HTMLButtonEventElement extends Components.ButtonEvent, HTMLStencilElement {
+    }
+    var HTMLButtonEventElement: {
+        prototype: HTMLButtonEventElement;
+        new (): HTMLButtonEventElement;
+    };
+    interface HTMLCustomHelloElement extends Components.CustomHello, HTMLStencilElement {
+    }
+    var HTMLCustomHelloElement: {
+        prototype: HTMLCustomHelloElement;
+        new (): HTMLCustomHelloElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -40,11 +65,20 @@ declare global {
         new (): HTMLTemplateCardElement;
     };
     interface HTMLElementTagNameMap {
+        "button-event": HTMLButtonEventElement;
+        "custom-hello": HTMLCustomHelloElement;
         "my-component": HTMLMyComponentElement;
         "template-card": HTMLTemplateCardElement;
     }
 }
 declare namespace LocalJSX {
+    interface ButtonEvent {
+    }
+    interface CustomHello {
+        "first"?: string;
+        "last"?: string;
+        "middle"?: string;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -60,11 +94,19 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface TemplateCard {
+        /**
+          * @default 0
+         */
+        "accomplishments"?: number;
+        "age"?: number;
+        "description"?: string;
         "first"?: string;
+        "job"?: string;
         "last"?: string;
-        "middle"?: string;
     }
     interface IntrinsicElements {
+        "button-event": ButtonEvent;
+        "custom-hello": CustomHello;
         "my-component": MyComponent;
         "template-card": TemplateCard;
     }
@@ -73,6 +115,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "button-event": LocalJSX.ButtonEvent & JSXBase.HTMLAttributes<HTMLButtonEventElement>;
+            "custom-hello": LocalJSX.CustomHello & JSXBase.HTMLAttributes<HTMLCustomHelloElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "template-card": LocalJSX.TemplateCard & JSXBase.HTMLAttributes<HTMLTemplateCardElement>;
         }
