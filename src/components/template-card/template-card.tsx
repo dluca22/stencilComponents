@@ -1,4 +1,4 @@
-import { Component, Host, Listen, Prop, State, h } from '@stencil/core';
+import { Component, Listen, Prop, State, h } from '@stencil/core';
 
 import { capitalizeInitial, formatName } from '../../utils/utils';
 
