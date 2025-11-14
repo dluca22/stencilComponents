@@ -28,6 +28,19 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface StatusBadge {
+        /**
+          * @default false
+         */
+        "autoRemove": boolean;
+        "message": string;
+        /**
+          * @default false
+         */
+        "persistent": boolean;
+        "status": 'info'|'success'|'warning'|'danger'|'critical'|'secondary';
+        "ttl": number | undefined;
+    }
     interface TemplateCard {
         /**
           * @default 0
@@ -42,6 +55,8 @@ export namespace Components {
         "first": string;
         "job": string;
         "last": string;
+    }
+    interface XIcon {
     }
 }
 export interface ButtonEventCustomEvent<T> extends CustomEvent<T> {
@@ -78,17 +93,31 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLStatusBadgeElement extends Components.StatusBadge, HTMLStencilElement {
+    }
+    var HTMLStatusBadgeElement: {
+        prototype: HTMLStatusBadgeElement;
+        new (): HTMLStatusBadgeElement;
+    };
     interface HTMLTemplateCardElement extends Components.TemplateCard, HTMLStencilElement {
     }
     var HTMLTemplateCardElement: {
         prototype: HTMLTemplateCardElement;
         new (): HTMLTemplateCardElement;
     };
+    interface HTMLXIconElement extends Components.XIcon, HTMLStencilElement {
+    }
+    var HTMLXIconElement: {
+        prototype: HTMLXIconElement;
+        new (): HTMLXIconElement;
+    };
     interface HTMLElementTagNameMap {
         "button-event": HTMLButtonEventElement;
         "custom-hello": HTMLCustomHelloElement;
         "my-component": HTMLMyComponentElement;
+        "status-badge": HTMLStatusBadgeElement;
         "template-card": HTMLTemplateCardElement;
+        "x-icon": HTMLXIconElement;
     }
 }
 declare namespace LocalJSX {
@@ -115,6 +144,19 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface StatusBadge {
+        /**
+          * @default false
+         */
+        "autoRemove"?: boolean;
+        "message"?: string;
+        /**
+          * @default false
+         */
+        "persistent"?: boolean;
+        "status"?: 'info'|'success'|'warning'|'danger'|'critical'|'secondary';
+        "ttl"?: number | undefined;
+    }
     interface TemplateCard {
         /**
           * @default 0
@@ -130,11 +172,15 @@ declare namespace LocalJSX {
         "job"?: string;
         "last"?: string;
     }
+    interface XIcon {
+    }
     interface IntrinsicElements {
         "button-event": ButtonEvent;
         "custom-hello": CustomHello;
         "my-component": MyComponent;
+        "status-badge": StatusBadge;
         "template-card": TemplateCard;
+        "x-icon": XIcon;
     }
 }
 export { LocalJSX as JSX };
@@ -144,7 +190,9 @@ declare module "@stencil/core" {
             "button-event": LocalJSX.ButtonEvent & JSXBase.HTMLAttributes<HTMLButtonEventElement>;
             "custom-hello": LocalJSX.CustomHello & JSXBase.HTMLAttributes<HTMLCustomHelloElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "status-badge": LocalJSX.StatusBadge & JSXBase.HTMLAttributes<HTMLStatusBadgeElement>;
             "template-card": LocalJSX.TemplateCard & JSXBase.HTMLAttributes<HTMLTemplateCardElement>;
+            "x-icon": LocalJSX.XIcon & JSXBase.HTMLAttributes<HTMLXIconElement>;
         }
     }
 }
