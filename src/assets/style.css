@@ -1,0 +1,28 @@
+      section {
+        border-bottom: 1px dashed rgb(37, 37, 37);
+        padding: 20px;
+        display: flex;
+        display: flex;
+        /* Arrange children side by side */
+        gap: 1rem;
+        /* Optional space between columns */
+      }
+
+      section> :first-child {
+        color: #777;
+        font-size: 14px;
+        flex: 0 0 20%;
+        border: 1px dashed black;
+        padding: 1rem;
+        flex-wrap: wrap;
+      }
+
+      /* Other section children auto size remaining space */
+      ssection> :not(:first-child) {
+        flex: 1;
+        padding: 1rem;
+      }
+
+      * {
+        color: blue;
+      }

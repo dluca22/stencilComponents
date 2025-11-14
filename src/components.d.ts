@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface ButtonEvent {
+        "initialCount": number;
     }
     interface CustomHello {
         "first": string;
@@ -32,15 +33,34 @@ export namespace Components {
           * @default 0
          */
         "accomplishments": number;
+        /**
+          * @default false
+         */
+        "addComplementaryActions": boolean;
         "age": number;
-        "description": string;
+        "descriptionText": string;
         "first": string;
         "job": string;
         "last": string;
     }
 }
+export interface ButtonEventCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLButtonEventElement;
+}
 declare global {
+    interface HTMLButtonEventElementEventMap {
+        "countIncreased": number;
+    }
     interface HTMLButtonEventElement extends Components.ButtonEvent, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLButtonEventElementEventMap>(type: K, listener: (this: HTMLButtonEventElement, ev: ButtonEventCustomEvent<HTMLButtonEventElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLButtonEventElementEventMap>(type: K, listener: (this: HTMLButtonEventElement, ev: ButtonEventCustomEvent<HTMLButtonEventElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLButtonEventElement: {
         prototype: HTMLButtonEventElement;
@@ -73,6 +93,8 @@ declare global {
 }
 declare namespace LocalJSX {
     interface ButtonEvent {
+        "initialCount"?: number;
+        "onCountIncreased"?: (event: ButtonEventCustomEvent<number>) => void;
     }
     interface CustomHello {
         "first"?: string;
@@ -98,8 +120,12 @@ declare namespace LocalJSX {
           * @default 0
          */
         "accomplishments"?: number;
+        /**
+          * @default false
+         */
+        "addComplementaryActions"?: boolean;
         "age"?: number;
-        "description"?: string;
+        "descriptionText"?: string;
         "first"?: string;
         "job"?: string;
         "last"?: string;

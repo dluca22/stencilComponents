@@ -6,7 +6,7 @@
   --accent: #2563eb;
   --radius: 0.75rem;
   --shadow: 0 4px 12px rgba(0,0,0,0.06);
-  --pad: 1rem;
+  --pad: 0.4rem;
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
@@ -22,6 +22,7 @@
   box-shadow: var(--shadow);
   overflow: hidden;
   max-width: 340px;
+  
   display: flex;
   flex-direction: column;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -59,8 +60,9 @@
 
 /* Body */
 .user-card__body {
-  padding: 1rem var(--pad);
+  padding: 1rem calc(var(--pad) * 2);
   text-align: center;
+  min-height: 4rem;
 }
 .user-card__description {
   margin: 0;
